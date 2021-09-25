@@ -1,9 +1,4 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
-import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons, FontAwesome, Entypo, EvilIcons, MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -23,18 +18,14 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      theme={DarkTheme}>
       <RootNavigator />
     </NavigationContainer>
   );
 }
 
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
+// A root stack navigator is often used for displaying modals on top of all other content.
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
 function RootNavigator() {
   return (
     <Stack.Navigator>
@@ -47,12 +38,8 @@ function RootNavigator() {
   );
 }
 
-/**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
+// A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
-
 function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
@@ -66,14 +53,10 @@ function BottomTabNavigator() {
         name="TabOne"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Home',
+          tabBarIcon: ({ color }) => <EntypIcon name="home" color={color} />,
           headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
+            <Pressable onPress={() => navigation.navigate('Modal')} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1, })}>
               <FontAwesome
                 name="info-circle"
                 size={25}
@@ -85,23 +68,61 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Search"
         component={TabTwoScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Search',
+          tabBarIcon: ({ color }) => <AwesomeIcon name="search" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Library"
+        component={TabTwoScreen}
+        options={{
+          title: 'Your Library',
+          tabBarIcon: ({ color }) => <MaterialIcon name="library-music" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Premium"
+        component={TabTwoScreen}
+        options={{
+          title: 'Premium',
+          tabBarIcon: ({ color }) => <AwesomeIcon name="spotify" color={color} />,
         }}
       />
     </BottomTab.Navigator>
   );
 }
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
+// Icons
+function AwesomeIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+}
+function IonIcon(props: {
+  name: React.ComponentProps<typeof Ionicons>['name'];
+  color: string;
+}) {
+  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+}
+function EntypIcon(props: {
+  name: React.ComponentProps<typeof Entypo>['name'];
+  color: string;
+}) {
+  return <Entypo size={30} style={{ marginBottom: -3 }} {...props} />;
+}
+function MaterialIcon(props: {
+  name: React.ComponentProps<typeof MaterialIcons>['name'];
+  color: string;
+}) {
+  return <MaterialIcons size={30} style={{ marginBottom: -3 }} {...props} />;
+}
+function EvilIcon(props: {
+  name: React.ComponentProps<typeof EvilIcons>['name'];
+  color: string;
+}) {
+  return <EvilIcons size={30} style={{ marginBottom: -3 }} {...props} />;
 }
