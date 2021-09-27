@@ -5,6 +5,7 @@ import { Text, View } from '../components/Themed'
 import { useRoute } from '@react-navigation/native'
 import SongListItem from '../components/SongListItem'
 import albumDetails from '../data/albumDetails'
+import AlbumHeader from '../components/AlbumHeader'
 
 
 const AlbumScreen = () => {
@@ -21,6 +22,7 @@ const AlbumScreen = () => {
         data={albumDetails.songs} 
         renderItem={({ item }) => <SongListItem song={item} />}
         keyExtractor={( item ) => item.id}
+        ListHeaderComponent={() => <AlbumHeader album={albumDetails} />}
       />
     </View>
   )
