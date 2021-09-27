@@ -13,7 +13,7 @@ const AlbumComponent = (props: AlbumProps) => {
 
     const navigation = useNavigation();
     const onPress = () => {
-        navigation.navigate('AlbumScreen');
+        navigation.navigate('AlbumScreen', {id: props.album.id});
     } 
 
     return(

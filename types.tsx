@@ -37,3 +37,10 @@ export type Album = {
   imageUri: string;
   artistsHeadline: string;
 }
+
+export type Song = {
+  id: String,
+  imageUri: String,
+  title: String,
+  artist: String,
+}

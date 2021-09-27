@@ -1,20 +1,32 @@
-import * as React from 'react'
-import { StyleSheet } from 'react-native'
+import React, {useEffect} from 'react'
+import { FlatList, StyleSheet } from 'react-native'
 
 import { Text, View } from '../components/Themed'
+import { useRoute } from '@react-navigation/native'
+import SongListItem from '../components/SongListItem'
+import albumDetails from '../data/albumDetails'
 
-const AlbumScreen = () => (
-  <View style={styles.container}>
-    <Text style={styles.title}>Hola</Text>
-  </View>
-  
-)
 
+const AlbumScreen = () => {
+
+  const route = useRoute();
+
+  useEffect( () => {
+    console.log(route);
+  }, [])
+
+  return(
+    <View style={styles.container}>
+      <FlatList 
+        data={albumDetails.songs} 
+        renderItem={({ item }) => <SongListItem song={item} />}
+        keyExtractor={( item ) => item.id}
+      />
+    </View>
+  )
+}
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: "black"
   },
   title: {
