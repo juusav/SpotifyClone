@@ -10,8 +10,6 @@ declare global {
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  Modal: undefined;
-  NotFound: undefined;
   AlbumScreen: undefined;
 };
 
@@ -22,6 +20,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
 
 export type RootTabParamList = {
   Home: undefined;
+  AlbumScreen: undefined;
   Library: undefined;
   Search: undefined;
   Premium: undefined;
@@ -34,8 +33,11 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> = Composit
 
 export type Album = {
   id: string;
+  by: string;
+  name: string;
   imageUri: string;
   artistsHeadline: string;
+  numberOfLikes: string;
 }
 
 export type Song = {

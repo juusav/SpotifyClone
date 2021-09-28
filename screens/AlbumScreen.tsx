@@ -8,7 +8,7 @@ import albumDetails from '../data/albumDetails'
 import AlbumHeader from '../components/AlbumHeader'
 
 
-const AlbumScreen = () => {
+export default function AlbumScreen () {
 
   const route = useRoute();
 
@@ -38,4 +38,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AlbumScreen;
