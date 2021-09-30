@@ -15,11 +15,15 @@ const song = {
 
 const PlayerWidget = () => {
 
-    const [sound, setSound] = useState<Sound|null>(null);
+    const [sound, setSound] = useState<Audio.Sound|null>(null);
     const [isPlaying, setIsPlaying] = useState<boolean>(true);
+    const [duration, setDuration] = useState<number|null>(null);
+    const [position, setPosition] = useState<number|null>(null);
     
     const onPlaybackStatusUpdate = (status) => {
         setIsPlaying(status.isPlaying);
+        setDuration(status.durationMillis);
+        setPosition(status.positionMillis);
     }
 
     const playCurrentSong = async () => {
@@ -49,25 +53,30 @@ const PlayerWidget = () => {
         }
     }
 
+    const getProgress = () => {
+        if (song === null || duration === null || position === null) { 
+            return 0 ;
+        }
+        return (position / duration ) * 100;
+    }
+
     return (
         <View style={styles.container}>
-            <Image source={{ uri: song.imageUri }} style={styles.image} />
-            
             <View style={styles.mainContainer}>
+                <Image source={{ uri: song.imageUri }} style={styles.image} />
                 <View style={styles.nameSongContainer}>
                     <Text style={styles.title}>{song.title}</Text>
                     <Text style={{color: "lightgray", marginHorizontal: 5}}>•</Text>
                     <Text style={styles.artist}>{song.artist}</Text>
                 </View>
-                
                 <View style={styles.buttons}>
-                    <FontAwesome name="heart-o" size={24} color="white" style={{marginRight: 10}} />
+                    <FontAwesome name="heart-o" size={22} color="white" style={{marginRight: 10}} />
                     <TouchableOpacity onPress={onPlayPausePress} >
                         <Ionicons name={isPlaying ? "pause-outline" : "md-play"} size={26} color="white" />
                     </TouchableOpacity>
-                </View>
+                </View>                
             </View>
-
+            <View style={[styles.progress, {width: `${getProgress()}%`}]} />
         </View>
     )
 }
