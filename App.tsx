@@ -5,6 +5,9 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import PlayerWidget from './components/PlayerWidget';
 import useCachedResources from './hooks/useCachedResources';
 import Navigation from './navigation';
+import Amplify from 'aws-amplify';
+import config from './src/aws-exports';
+Amplify.configure(config)
 
 export default function App() {
   const isLoadingComplete = useCachedResources();

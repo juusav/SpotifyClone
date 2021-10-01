@@ -24,6 +24,7 @@ const PlayerWidget = () => {
         setIsPlaying(status.isPlaying);
         setDuration(status.durationMillis);
         setPosition(status.positionMillis);
+        console.log(status);
     }
 
     const playCurrentSong = async () => {
