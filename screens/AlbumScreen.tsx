@@ -8,7 +8,6 @@ import SongListItem from '../components/SongListItem'
 import AlbumHeader from '../components/AlbumHeader'
 import { getAlbum } from '../src/graphql/queries'
 
-
 const AlbumScreen = () => {
 
   const route = useRoute();

@@ -2,7 +2,7 @@ import React from "react";
 
 const context = {
   songId: null,
-  setSongId: (id: string) => {},
+  setSongId: (id: String) => {},
 };
 
 export const AppContext = React.createContext(context);

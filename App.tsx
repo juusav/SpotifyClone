@@ -14,7 +14,7 @@ import { AppContext } from './AppContext'
 export default function App() {
   const isLoadingComplete = useCachedResources();
 
-  const [songId, setSongId] = useState<string|null >(null);
+  const [songId, setSongId] = useState<String|null >(null);
 
   if (!isLoadingComplete) {
     return null;
@@ -22,8 +22,8 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <AppContext.Provider value={{
-          songId,
-          setSongId: (id: string) => setSongId(id), 
+          songId: null,
+          setSongId: (id: String) => setSongId(id), 
         }}>
           <Navigation />
           <StatusBar />
