@@ -1,21 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react'
 import { View, Image, Text, TouchableOpacity } from 'react-native'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
-<<<<<<< HEAD
 import { graphqlOperation, API } from 'aws-amplify'
 import { Sound } from 'expo-av/build/Audio'
-=======
-import { Audio } from 'expo-av'
-import { API, graphqlOperation } from 'aws-amplify'
->>>>>>> main
 
 import styles from './styles'
 import { AppContext } from '../../AppContext'
 import { getSong } from '../../src/graphql/queries'
 
 const PlayerWidget = () => {
-<<<<<<< HEAD
-
     const [sound, setSound] = useState<Sound|null>(null);
     const [isPlaying, setIsPlaying] = useState<boolean>(true);
     const [duration, setDuration] = useState<number|null>(null);
@@ -31,30 +24,11 @@ const PlayerWidget = () => {
                 const dataSong = await API.graphql(graphqlOperation(getSong, {id: songId}))
                 setSong(dataSong.data.getSong);
             } catch (e) {
-=======
-    const [song, setSong] = useState(null);
-    const [sound, setSound] = useState<Audio.Sound|null>(null);
-    const [isPlaying, setIsPlaying] = useState<boolean>(true);
-    const [duration, setDuration] = useState<number|null>(null);
-    const [position, setPosition] = useState<number|null>(null);
-
-    const { songId } = useContext(AppContext);
-    useEffect( () => {
-        const fetchSong = async () => {
-            try{
-                const data = await API.graphql(graphqlOperation(getSong, { id: songId} ))
-                setSong(data.data.getSong);
-            }catch (e){
->>>>>>> main
                 console.log(e);
             }
         }
         fetchSong();
-<<<<<<< HEAD
     }, [])
-=======
-    }, [songId])
->>>>>>> main
 
     const onPlaybackStatusUpdate = (status) => {
         setIsPlaying(status.isPlaying);
@@ -73,18 +47,12 @@ const PlayerWidget = () => {
         setSound(newSound)
     }
     useEffect( () => {
-<<<<<<< HEAD
         if ( song ) {
             playCurrentSong();
         }
         playCurrentSong();
     }, [song]) //only when a song is found
-=======
-        if (song) {
-            playCurrentSong();
-        }
-    }, [song])
->>>>>>> main
+
     const onPlayPausePress = async () => {
         if (!sound) {
             return;
@@ -102,16 +70,9 @@ const PlayerWidget = () => {
         return (position / duration ) * 100;
     }
 
-<<<<<<< HEAD
     if(!song){
         return null;
     }
-=======
-    if (!song) {
-        return null;
-    }
-
->>>>>>> main
     return (
         <View style={styles.container}>
             <View style={styles.mainContainer}>

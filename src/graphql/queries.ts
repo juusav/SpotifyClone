@@ -38,6 +38,12 @@ export const listAlbumCategories = /* GraphQL */ `
         title
         albums {
           nextToken
+          items{
+            id
+            imageUri
+            name
+            artistsHeadline
+          }
         }
         createdAt
         updatedAt
