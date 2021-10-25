@@ -6,6 +6,7 @@
 
 import { LinkingOptions } from '@react-navigation/native';
 import * as Linking from 'expo-linking';
+import AlbumScreen from '../screens/AlbumScreen';
 
 import { RootStackParamList } from '../types';
 
@@ -19,19 +20,13 @@ const linking: LinkingOptions<RootStackParamList> = {
             screens: {
               HomeScreen: 'Home',
               AlbumScreen: 'AlbumDetails'
-            },
-          },
-          TabTwo: {
-            screens: {
-              TabTwoScreen: 'two',
+
+              }
             },
           },
         },
       },
-      Modal: 'modal',
-      NotFound: '*',
     },
-  },
-};
+  };
 
 export default linking;
