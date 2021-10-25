@@ -12,6 +12,10 @@ const SongListItem = (props: SongListItemProps) => {
 
     const { song } = props;
     const { setSongId } = useContext(AppContext);
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
     const onPlay = () => {
         setSongId(song.id);
     }
